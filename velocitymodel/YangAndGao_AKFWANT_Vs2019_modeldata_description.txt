@@ -1,0 +1,42 @@
+AKFWANT-Vs2019
+3-D shear-wave isotropic model for Alaska from full-wave ambient noise tomography
+
+Summary
+AKFWANT-Vs2019 (Yang and Gao, in revision) is a 3-D shear-wave isotropic model for Alaska and western Canada from full-wave ambient noise tomography with resolvable depth for the top 150 km.
+
+Type
+3-D Tomography Earth Model
+
+Sub Type
+Shear-wave velocity (km/s)
+
+Year	2019
+	
+Short Description
+AKFWANT-Vs2019 is a 3-D shear-wave isotropic model for Alaska and western Canada from full-wave ambient noise tomography with resolvable depth for the top 150 km. The Vs model with good resolution (> 70% recovery) is from the depth of 15 km to the depth of 110 km. The tomography was based on an empirical Green’s function data set extracted from cross-correlation between station pairs. The tomography method involves 3-D wave propagation simulation. The travel-time different between the synthetics and the observed empirical Green’s functions are inverted for finite-frequency sensitivity kernels to get velocity perturbations. The velocity model is updated iteratively for a total of five iterations. 
+	
+Authors:	 
+Xiaotao Yang1,2 & Haiying Gao1
+1 Department of Geosciences, University of Massachusetts Amherst. 627 North Pleasant Street, Amherst, MA 01003
+2 Now at Department of Earth and Planetary Sciences, Harvard University. 20 Oxford St, Cambridge, MA 02138
+	
+Reference Model
+The reference velocity model consists of two parts: a global shear-velocity model for the top 400 km (Shapiro and Ritzwoller, 2002) and the IASP91 1-D Earth model from 400 km down to 1000 km (Kennett and Engdahl, 1991).	
+
+Model format		
+	netCDF binary file	
+		
+Depth Coverage
+From 0 km to 200 km.
+	
+Areal Coverage
+Alaska (United States) and western Canada (latitude: 56° to 66.8°, longitude: -160.991° to -136.519°) 	
+ 		
+Model Resolution
+As tested and validated by previous applications of full-wave tomographic imaging (e.g., Gao, 2018; Zhang and Shen, 2008), Rayleigh waves are most sensitive to P-wave velocity at shallow depths (< 15 km) and to S-wave velocity at greater depths. Although P-wave velocity model is also provided for all depth, interpretation of P velocities deeper than 15 km and shallower than 5 km is discouraged. The model provided here is from the inversion result of the 5th iteration without smoothing or interpolation. When interpreting the velocity model, it is recommended that the user smooth the model based on the best resolution at the corresponding depth. The checkerboard tests show that shear-wave velocity perturbations can be well resolved with horizontal scales of 44 km, 66 km, 88 km, 110 km, 132 km, and 154 km at the depths of 15 km, 32 km, 51 km, 74 km, 97 km, and 134 km, respectively.	
+
+References
+•	Shapiro, N. M., and M. H. Ritzwoller (2002), Monte-Carlo inversion for a global shear-velocity model of the crust and upper mantle, Geophys. J. Int., 151(1), 88-105, doi:10.1046/j.1365-246X.2002.01742.x
+•	Kennett, B. L. N., Engdahl, E. R. Traveltimes for global earthquake location and phase identification. Geophys. J. Int., 105: 429-465 (1991)
+•	Zhang, Z., Shen, Y. Cross-dependence of finite-frequency compressional waveforms to shear seismic wave speeds. Geophys. J. Int., 174(3): 941-948 (2008)
+•	Gao, H. Three-dimensional variations of the slab geometry correlate with earthquake distributions at the Cascadia subduction system. Nat. Commun.,9:(2018)
