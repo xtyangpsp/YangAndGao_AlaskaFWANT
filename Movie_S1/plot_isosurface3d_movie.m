@@ -10,29 +10,49 @@
 % Yang, X., H. Gao (in revision). Seismic imaging of slab segmentation and 
 % correlation with volcano distribution along the Aleutian-Alaska subduction zone, 
 % Nature Communications
+%
+% Alaska volcano catalog was downloaded from Alaska volcano observatory (https://www.avo.alaska.edu)
+%
+% Slab interface model E125 was from Jadamec, M. A., and M. I. Billen (2010),
+% Reconciling surface plate motions with rapid three-dimensional mantle flow 
+% around a slab edge, Nature, 465(7296), 338-U389, doi:10.1038/nature09053. 
 
 %plot isosurface
 close all;
 
-%% load master data
+% load master data
 load AlaskaBorder;
 state=[]; state(1).polygon(:,1)=Alaska.lon;state(1).polygon(:,2)=Alaska.lat;
 
-%%
+%
 vmodelfile='YangAndGao_AKFWANT_Vs2019_modeldata_forpaper.nc';
 vtag='vs'; %velocity tag to read in the *.nc model file. 
 % check the variables using ncinfo in MATLAB.
-[y,x,z,mvs]=read_netCDF_model3d(vmodelfile,vtag);
-%%
+% [y,x,z,mvs]=read_netCDF_model3d(vmodelfile,vtag);
+z=ncread(vmodelfile,'depth');
+x=ncread(vmodelfile,'longitude');
+y=ncread(vmodelfile,'latitude');
+mvs=ncread(vmodelfile,vtag);
+% deal with NaN values.
+mvs(abs(mvs)>20)=nan;
+
+%
 % maparea.lon=[-161,-136.5]; % temporary 
 % maparea.lat=[56, 66.8];
 AKvolcanoes=load('AKvolclatlong_ready_matlab.txt');
-quakes=load('AK_quakes_1970_gt4.5_NEIC_matlab.txt');
 %%
-vplot_all=smooth3(mvs/1000,'box',[13 25 1]); %
+clear slabdata slabgrid;
+slabdata=load('SlabE125_ready.dat');
+slablon=min(slabdata(:,1)):0.1:max(slabdata(:,1));
+slablat=min(slabdata(:,2)):0.1:max(slabdata(:,2));
+[slabX,slabY]=meshgrid(slablon,slablat);
+slabgrid=griddata(slabdata(:,1),slabdata(:,2),slabdata(:,3),...
+    slablon,(slablat)');
+%%
+vplot_all=smooth3(permute(mvs,[2,3,1]),'box',[13 25 1]); %
 
-%%
-amask=nan(length(squeeze(XSIM(:,1,1))),length(squeeze(YSIM(1,:,1))));
+%% create mask grid based on seismic ray coverage for period of 25-50 s (ray path > 10)
+amask=nan(length(y),length(x));
 load('AlaskaRayCoverOutline_ite_0.05deg_05_25-50s_cutoff10.mat');
 for i=1:size(amask,1)
     clear id00;
@@ -40,6 +60,7 @@ for i=1:size(amask,1)
             raycover.data(:,2));
     amask(i,id00)=1;
 end
+%
 amask3d=nan(size(vplot_all));
 for k=1:length(z)
     amask3d(:,:,k)=amask;
@@ -49,33 +70,26 @@ vplot=vplot_all.*amask3d;
 maparea.lon=[-158,-139]; % temporary 
 maparea.lat=[57, 65];
 myzlim=[30 120];
-lonidx=find(x>=maparea.lon(1) & x<=maparea.lon(2));
-latidx=find(y>=maparea.lat(1) & y<=maparea.lat(2));
+lonidx=find(x>=maparea.lon(1)+0.1 & x<=maparea.lon(2)-0.1);
+latidx=find(y>=maparea.lat(1)+0.1 & y<=maparea.lat(2)-0.1);
 depthidx=find(z>=myzlim(1) & z<=myzlim(2));
 %
 clear isov isocap_low;
 zlimindexmin=min(depthidx); zlimindexmax=max(depthidx);
 isovalue1=4.1;
-zlimindexmax_slow=118;
-isov=isosurface(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax_slow),...
-    vplot(latidx,lonidx,zlimindexmin:zlimindexmax_slow),isovalue1);
-isocap_low=isocaps(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax_slow),...
-    vplot(latidx,lonidx,zlimindexmin:zlimindexmax_slow),isovalue1,'below');
+zlimindexmax_slow=zlimindexmax;
+isov=isosurface(x(lonidx),y(latidx),z(zlimindexmin+2:zlimindexmax_slow),...
+    vplot(latidx,lonidx,zlimindexmin+2:zlimindexmax_slow),isovalue1);
+isocap_low=isocaps(x(lonidx),y(latidx),z(zlimindexmin+2:zlimindexmax_slow),...
+    vplot(latidx,lonidx,zlimindexmin+2:zlimindexmax_slow),isovalue1,'below');
 
 isovalue=4.6;
 isovUM=isosurface(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax),vplot(latidx,lonidx,zlimindexmin:zlimindexmax),isovalue);
 isocap_slab=isocaps(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax),...
     vplot(latidx,lonidx,zlimindexmin:zlimindexmax),isovalue);
-%%
-clear slabdata slabgrid;
-slabdata=load('SlabE125_ready.dat');
-slablon=min(slabdata(:,1)):0.1:max(slabdata(:,1));
-slablat=min(slabdata(:,2)):0.1:max(slabdata(:,2));
-[slabX,slabY]=meshgrid(slablon,slablat);
-slabgrid=griddata(slabdata(:,1),slabdata(:,2),slabdata(:,3),...
-    slablon,(slablat)');
+
 %% plot 4.1 km/s isosurface.
-bgcolor='w'; %'w' for print; 'k' for screen play
+bgcolor='k'; %'w' for print; 'k' for screen play
 figure('position',[1400 400 1280 720],'color',bgcolor);
 surfacealpha=1;
 p=patch(isov,'FaceColor',[1 0.75 0],...
@@ -164,7 +178,7 @@ end
 savevideo=1;
 if savevideo
     aviid = VideoWriter([velocitytag,'_isosurface_',...
-        num2str(isovalue1),'_and_',num2str(isovalue),'_black_withcolorbar.mp4'],'MPEG-4');
+        num2str(isovalue1),'_and_',num2str(isovalue),'_',bgcolor,'_withcolorbar.mp4'],'MPEG-4');
     open(aviid);
 end
 view(-31,25);
