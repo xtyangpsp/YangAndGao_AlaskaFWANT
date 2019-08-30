@@ -2,14 +2,14 @@
 Source data and computer codes for Yang and Gao, Nature Communications, 2019 paper
 
 ## Directories
-1. Figure_4:
-Shear-wave velocities below each volcano at multiple depths.
-2. Figure_6:
-Trace element Moho depth estimated from La/Yb and Sr/Y, based on the relationsip defined by Lieu and Stern (2019).
-3. Figure_S2: 
+1. Figure_S2: 
 Phase delay measurements for each iteration and the plotting MATLAB script.
-4. Movie_S1: 
-The MATLAB script to create Movie S1 in the supplement. All data, including the velocity model, volcanoes, and slab interface model, are included. The 3-D shear velocity model from this study in netCDF format. This *.nc file can be read using any netCDF reader. A MATLAB script is provided as a wrapper to read the velocity model.
+2. Figure_S9:
+Shear-wave velocities below each volcano at multiple depths.
+3. Movie_S1: 
+The MATLAB script to create Movie S1 in the supplement. All data, including the velocity model, volcanoes, and slab interface model, are included. A MATLAB script is provided as a wrapper to read the velocity model.
+4. velocitymodel:
+The 3-D shear velocity model from this study in netCDF format and a description file in plain text format. This *.nc file can be read using any netCDF reader. 
 
 ## System requirements
 1. The codes have been tested on macOS HighSierra;
