@@ -17,6 +17,6 @@ The 3-D shear velocity model from this study in netCDF format and a description 
 3. The MATLAB version, however, should include netCDF functions. The one used is ncread(). If not, netCDF has MATLAB package for downloads.
 
 ## Installation guide
-1. Download the code to your computer: git clone https://github.com/xtyangpsp/YangAndGao_NatComm2019.git
+1. Download the code to your computer: git clone https://github.com/xtyangpsp/YangAndGao_AlaskaFWANT.git
 2. No further installations needed, once you have MATLAB running on your computer.
 
