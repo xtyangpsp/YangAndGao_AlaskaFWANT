@@ -1,5 +1,5 @@
-# YangAndGao_NatComm2019
-Source data and computer codes for Yang and Gao, Nature Communications, 2019 paper
+# YangAndGao_AlaskaFWANT
+Source data and computer codes for the Alaska FWANT paper.
 
 ## Directories
 1. Figure_S2: 
