@@ -1,4 +1,4 @@
-This folder includes the source data and the plotting script used in Figure S2 in the supplementary information.
+This folder includes the source data and the plotting script used in Figure 3 in the supplementary information.
 
 Formation of the phase delay data files:
 1. The files are named by the iteration number. For example, ite_0.05deg_01_measure_result_Alaska.dat_latlon is the data for the 1st iteration using the reference velocity model, for grid size of 0.05 degrees in both latitude and longitude directions.
