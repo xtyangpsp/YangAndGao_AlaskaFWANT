@@ -4,7 +4,7 @@ Source data and computer codes for the Alaska FWANT paper.
 ## Directories
 1. Figure_3: 
 Phase delay measurements for each iteration and the plotting MATLAB script.
-2. Figure_6:
+2. Figure_6_10_S6:
 Shear-wave velocities below each volcano at multiple depths.
 3. Movie_S1: 
 The MATLAB script to create Movie S1 in the supplement. All data, including the velocity model, volcanoes, and slab interface model, are included. A MATLAB script is provided as a wrapper to read the velocity model.
