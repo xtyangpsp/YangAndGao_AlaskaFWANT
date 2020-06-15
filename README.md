@@ -4,7 +4,7 @@ Source data and computer codes for the Alaska FWANT paper.
 ## Directories
 1. Figure_3: 
 Phase delay measurements for each iteration and the plotting MATLAB script.
-2. Figure_6_S5_S7:
+2. Figure_6_7_S5_S8:
 Shear-wave velocities below each volcano at multiple depths.
 3. Movie_S1: 
 The MATLAB script to create Movie S1 in the supplement. All data, including the velocity model, volcanoes, and slab interface model, are included. A MATLAB script is provided as a wrapper to read the velocity model.
@@ -13,7 +13,7 @@ The 3-D shear velocity model from this study in netCDF format and a description 
 
 ## System requirements
 1. The codes have been tested on macOS HighSierra;
-2. The MATLAB scripts were developed under MATLAB 2014b. However, other versions of MATLAB should also work. 
+2. The MATLAB scripts were developed under MATLAB 2014b and 2019b. However, other versions of MATLAB should also work. 
 3. The MATLAB version, however, should include netCDF functions. The one used is ncread(). If not, netCDF has MATLAB package for downloads.
 
 ## Installation guide
