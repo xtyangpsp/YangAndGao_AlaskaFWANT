@@ -107,7 +107,7 @@ indatasubset=[indatasubset table(slabdepth,mohodepth,heatflow)];
 % We will correct the gradient after extracting the values for each
 % volcanoes.
 R0=6371;
-dx=deg2km(diff(slabx(1:2)),R0*cos(degtorad(slabx)));
+dx=deg2km(diff(slabx(1:2)),R0*cos(deg2rad(slabx)));
 dy=deg2km(diff(slaby(1:2)))*ones(size(slaby));
 
 for i=1:size(gx,1)
@@ -118,7 +118,7 @@ for i=1:size(gy,2)
 end
 gxy=sqrt(gx.^2 + gy.^2); %get total gradient
 
-slabdipgrid=radtodeg(atan(gxy)); %get dip angle at each grid point in degrees.
+slabdipgrid=rad2deg(atan(gxy)); %get dip angle at each grid point in degrees.
 
 slabdip=interp2(slabx,slaby,slabdipgrid,vlon,vlat);
 indatasubset=[indatasubset table(slabdip)];
