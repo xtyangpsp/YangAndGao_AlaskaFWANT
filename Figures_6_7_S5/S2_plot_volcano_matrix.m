@@ -67,17 +67,6 @@ gmt(['psxy -R -JL -h1 volcanoes_BCJD.txt -Sc0.27 ',...
 gmt(['psxy -R -JL -h1 volcanoes_WVF.txt -Ss0.27 ',...
   '  -W1p,blue -O >> ', psfilenm]);
 
-% COLOR BY SLAB DEPTH
-% gmt(['psxy -R -JL -h1 volcanoes_ALT.txt -St0.27 ',...
-%   '  -W.5p,55 -C',vcpt,' -O -K >> ', psfilenm]);
-% gmt(['psxy -R -JL -h1 volcanoes_DVG.txt -Sa0.3 ',...
-%   '  -W.5p,55 -C',vcpt,' -O -K >> ', psfilenm]);  
-% gmt(['psxy -R -JL -h1 volcanoes_BCJD.txt -Sc0.27 ',...
-%   '  -W.5p,55 -C',vcpt,' -O -K >> ', psfilenm]);    
-% gmt(['psxy -R -JL -h1 volcanoes_WVF.txt -Ss0.27 ',...
-%   '  -W.5p,55 -C',vcpt,' -O -K >> ', psfilenm]);
-% gmt(['psscale -D3.7/-1/4.7/0.25h -C',vcpt,' -B20 -O >> ' psfilenm]);
-
 gmt('destroy');
 
 disp(['File saved to: ',psfilenm]);
@@ -99,14 +88,6 @@ for i=1:length(indata.group)
        idxt_WVF=[idxt_WVF;i];
    end
 end
-
-% clear statarray;
-% indata_subset=indata(:,{'Longitude','Latitude','Volume_km3','EruptionCode','slabdepth',...
-%     'mohodepth','heatflow','group','meanvs_28km','medianvs_28km','minvs_28km','maxvs_28km',...
-%     'meanvs_51km','medianvs_51km','minvs_51km','maxvs_51km','meanvs_80km','medianvs_80km',...
-%     'minvs_80km','maxvs_80km'});
-% statarray=grpstats(indata_subset,'group',{'min','median','mean','max'});
-
 %% plot Vs v.s. volcano locations (longitude)
 figure('Position',[400 400 700 450]);
 figlabel={'a ','b ','c ','d ','e ','f '};
@@ -209,7 +190,7 @@ for i=1:length(depthlist)
     
     plotidx=plotidx+1;
 end
-figname=['Figure_4_Alaska_volcanoes_',vstype,'vs.eps'];
+figname=['Figure_6_Alaska_volcanoes_',vstype,'vs.eps'];
 % set(gcf,'PaperPositionMode','auto');
 saveas(gca,figname,'epsc');
 disp(['Saved to: ' figname]);
@@ -297,7 +278,7 @@ for i=1:length(depthlist)
     
     plotidx=plotidx+1;
 end
-figname=['Figure_S9_Alaska_volcanoes_',vstype,'dvs.eps'];
+figname=['Figure_S5_Alaska_volcanoes_',vstype,'dvs.eps'];
 % set(gcf,'PaperPositionMode','auto');
 saveas(gca,figname,'epsc');
 disp(['Saved to: ' figname]);
@@ -485,7 +466,7 @@ for i=1:length(depthlist)
         drawnow;
     end
 end
-figname=['Figure_5_Alaska_volcanoes_',vstype,'vs_others.eps'];
+figname=['Figure_Alaska_volcanoes_',vstype,'vs_others.eps'];
 % set(gcf,'PaperPositionMode','auto');
 saveas(gca,figname,'epsc');
 disp(['Saved to: ' figname]);

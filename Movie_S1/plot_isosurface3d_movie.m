@@ -49,7 +49,7 @@ slablat=min(slabdata(:,2)):0.1:max(slabdata(:,2));
 slabgrid=griddata(slabdata(:,1),slabdata(:,2),slabdata(:,3),...
     slablon,(slablat)');
 %%
-vplot_all=smooth3(permute(mvs,[2,3,1]),'box',[13 25 1]); %
+vplot_all=smooth3(permute(mvs,[2,1,3]),'box',[13 25 1]); %
 
 %% create mask grid based on seismic ray coverage for period of 25-50 s (ray path > 10)
 amask=nan(length(y),length(x));
@@ -92,7 +92,7 @@ isocap_slab=isocaps(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax),...
 bgcolor='k'; %'w' for print; 'k' for screen play
 figure('position',[1400 400 1280 720],'color',bgcolor);
 surfacealpha=1;
-p=patch(isov,'FaceColor',[1 0.75 0],...
+p=patch(isov,'FaceColor',[1 0.85 0],...
    'EdgeColor','none','FaceAlpha',1);
 isonormals(x,y,z,...
     vplot,p);
@@ -103,7 +103,7 @@ view(3); axis tight
 hold on;
 myzlimUM=myzlim;%[0 150];
 
-pUM=patch(isovUM,'FaceColor',[0 0.25 .6],...
+pUM=patch(isovUM,'FaceColor',[0 0.25 1],...
    'EdgeColor','none','FaceAlpha',surfacealpha);
 
 isonormals(x(lonidx),y(latidx),z(zlimindexmin:zlimindexmax),...

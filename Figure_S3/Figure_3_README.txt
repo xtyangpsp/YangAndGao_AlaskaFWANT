@@ -1,4 +1,4 @@
-This folder includes the source data and the plotting script used in Figure 3 in the supplementary information.
+This folder includes the source data and the plotting script used in Figure S3 in the supplementary information.
 
 Formation of the phase delay data files:
 1. The files are named by the iteration number. For example, ite_0.05deg_01_measure_result_Alaska.dat_latlon is the data for the 1st iteration using the reference velocity model, for grid size of 0.05 degrees in both latitude and longitude directions.
@@ -19,9 +19,7 @@ Column 	1: virtual source name
 ...
 
 Prepared by Xiaotao Yang 
-Contact: stcyang@gmail.com
+Contact: xtyang@purdue.edu
 
 Reference:
-Yang, X., H. Gao (in revision). Seismic imaging of slab segmentation and 
-correlation with volcano distribution along the Aleutian-Alaska subduction zone, 
-Nature Communications
+Yang, X., H. Gao (in revision). Segmentation of the Aleutian-Alaska subduction zone revealed by full-wave ambient noise tomography: implications for the along-strike variation of volcanism, Journal of Geophysical Research-Solid Earth
